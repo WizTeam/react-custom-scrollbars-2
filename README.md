@@ -1,4 +1,4 @@
-react-custom-scrollbars-2
+@wiz/react-custom-scrollbars-2
 =========================
 
 [![npm](https://img.shields.io/badge/npm-react--custom--scrollbars--2-brightgreen.svg?style=flat-square)]()
@@ -22,7 +22,7 @@ This repo is due to the original (fantastic) [`react-custom-scrollbars`](https:/
 
 ## Installation
 ```bash
-npm install react-custom-scrollbars-2 --save
+npm install @wiz/react-custom-scrollbars-2 --save
 ```
 
 This assumes that you’re using [npm](http://npmjs.com/) package manager with a module bundler like [Webpack](http://webpack.github.io) or [Browserify](http://browserify.org/) to consume [CommonJS modules](http://webpack.github.io/docs/commonjs.html).
