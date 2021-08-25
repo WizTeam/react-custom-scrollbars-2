@@ -4,7 +4,7 @@ import { Component, createElement, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 
 import isString from '../utils/isString';
-import getScrollbarWidth from '../utils/getScrollbarWidth';
+import getScrollbarWidth, { setDefaultScrollbarWidth } from '../utils/getScrollbarWidth';
 import returnFalse from '../utils/returnFalse';
 import getInnerWidth from '../utils/getInnerWidth';
 import getInnerHeight from '../utils/getInnerHeight';
@@ -483,7 +483,6 @@ export default class Scrollbars extends Component {
     }
 
     render() {
-        const scrollbarWidth = getScrollbarWidth();
         /* eslint-disable no-unused-vars */
         const {
             onScroll,
@@ -497,6 +496,7 @@ export default class Scrollbars extends Component {
             renderThumbHorizontal,
             renderThumbVertical,
             tagName,
+            defaultScrollbarWidth,
             hideTracksWhenNotNeeded,
             autoHide,
             autoHideTimeout,
@@ -512,6 +512,8 @@ export default class Scrollbars extends Component {
             ...props
         } = this.props;
         /* eslint-enable no-unused-vars */
+        setDefaultScrollbarWidth(defaultScrollbarWidth);
+        const scrollbarWidth = getScrollbarWidth();
 
         const { didMountUniversal } = this.state;
 
@@ -572,7 +574,7 @@ export default class Scrollbars extends Component {
 
         return createElement(tagName, { ...props, style: containerStyle, ref: (ref) => { this.container = ref; } }, [
             cloneElement(
-                renderView({ style: viewStyle }),
+                renderView({ className: 'react-custom-scrollbars-layer', style: viewStyle }),
                 { key: 'view', ref: (ref) => { this.view = ref; } },
                 children
             ),
@@ -607,6 +609,7 @@ Scrollbars.propTypes = {
     renderTrackVertical: PropTypes.func,
     renderThumbHorizontal: PropTypes.func,
     renderThumbVertical: PropTypes.func,
+    defaultScrollbarWidth: PropTypes.number,
     tagName: PropTypes.string,
     thumbSize: PropTypes.number,
     thumbMinSize: PropTypes.number,
@@ -635,6 +638,7 @@ Scrollbars.defaultProps = {
     renderThumbHorizontal: renderThumbHorizontalDefault,
     renderThumbVertical: renderThumbVerticalDefault,
     tagName: 'div',
+    defaultScrollbarWidth: 0,
     thumbMinSize: 30,
     hideTracksWhenNotNeeded: false,
     autoHide: false,
