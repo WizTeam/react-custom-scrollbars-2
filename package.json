@@ -1,5 +1,5 @@
 {
-  "name": "@wiz/react-custom-scrollbars-2",
+  "name": "@wizteam/react-custom-scrollbars-2",
   "version": "4.3.1",
   "description": "React scrollbars component",
   "main": "lib/index.js",
