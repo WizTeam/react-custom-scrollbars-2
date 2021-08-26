@@ -34,6 +34,7 @@ export interface ScrollbarProps extends React.HTMLProps<Scrollbars> {
     renderThumbVertical?: React.StatelessComponent<any>;
 
     tagName?: string;
+    defaultScrollbarWidth?: number;
     hideTracksWhenNotNeeded?: boolean;
 
     autoHide?: boolean;
