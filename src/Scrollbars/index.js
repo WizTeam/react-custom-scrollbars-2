@@ -610,6 +610,7 @@ Scrollbars.propTypes = {
     renderThumbHorizontal: PropTypes.func,
     renderThumbVertical: PropTypes.func,
     defaultScrollbarWidth: PropTypes.number,
+    view: PropTypes.element,
     tagName: PropTypes.string,
     thumbSize: PropTypes.number,
     thumbMinSize: PropTypes.number,

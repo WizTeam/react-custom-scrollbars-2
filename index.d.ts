@@ -66,6 +66,7 @@ export class Scrollbars extends React.Component<ScrollbarProps> {
     getClientHeight(): number;
     getValues(): positionValues;
     container: HTMLDivElement;
+    view: HTMLDivElement | null;
 }
 
 export default Scrollbars;
