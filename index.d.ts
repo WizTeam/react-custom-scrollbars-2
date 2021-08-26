@@ -32,6 +32,8 @@ export interface ScrollbarProps extends React.HTMLProps<Scrollbars> {
     renderTrackVertical?: React.StatelessComponent<any>;
     renderThumbHorizontal?: React.StatelessComponent<any>;
     renderThumbVertical?: React.StatelessComponent<any>;
+    customTrackHorizontalStyle?: object,
+    customTrackVerticalStyle?: object,
 
     tagName?: string;
     defaultScrollbarWidth?: number;

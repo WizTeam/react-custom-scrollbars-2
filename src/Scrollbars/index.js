@@ -20,7 +20,8 @@ import {
     thumbHorizontalStyleDefault,
     thumbVerticalStyleDefault,
     disableSelectStyle,
-    disableSelectStyleReset
+    disableSelectStyleReset,
+    setDefaultTrackWidth
 } from './styles';
 
 import {
@@ -495,7 +496,10 @@ export default class Scrollbars extends Component {
             renderTrackVertical,
             renderThumbHorizontal,
             renderThumbVertical,
+            customTrackHorizontalStyle,
+            customTrackVerticalStyle,
             tagName,
+            defaultTrackWidth,
             defaultScrollbarWidth,
             hideTracksWhenNotNeeded,
             autoHide,
@@ -512,6 +516,8 @@ export default class Scrollbars extends Component {
             ...props
         } = this.props;
         /* eslint-enable no-unused-vars */
+
+        setDefaultTrackWidth(defaultTrackWidth);
         setDefaultScrollbarWidth(defaultScrollbarWidth);
         const scrollbarWidth = getScrollbarWidth();
 
@@ -561,7 +567,8 @@ export default class Scrollbars extends Component {
             ...(autoHide && trackAutoHeightStyle),
             ...((!scrollbarWidth || (universal && !didMountUniversal)) && {
                 display: 'none'
-            })
+            }),
+            ...customTrackHorizontalStyle
         };
 
         const trackVerticalStyle = {
@@ -569,7 +576,8 @@ export default class Scrollbars extends Component {
             ...(autoHide && trackAutoHeightStyle),
             ...((!scrollbarWidth || (universal && !didMountUniversal)) && {
                 display: 'none'
-            })
+            }),
+            ...customTrackVerticalStyle
         };
 
         return createElement(tagName, { ...props, style: containerStyle, ref: (ref) => { this.container = ref; } }, [
@@ -609,7 +617,10 @@ Scrollbars.propTypes = {
     renderTrackVertical: PropTypes.func,
     renderThumbHorizontal: PropTypes.func,
     renderThumbVertical: PropTypes.func,
+    customTrackHorizontalStyle: PropTypes.Object,
+    customTrackVerticalStyle: PropTypes.Object,
     defaultScrollbarWidth: PropTypes.number,
+    defaultTrackWidth: PropTypes.number,
     view: PropTypes.element,
     tagName: PropTypes.string,
     thumbSize: PropTypes.number,
@@ -638,8 +649,11 @@ Scrollbars.defaultProps = {
     renderTrackVertical: renderTrackVerticalDefault,
     renderThumbHorizontal: renderThumbHorizontalDefault,
     renderThumbVertical: renderThumbVerticalDefault,
+    customTrackHorizontalStyle: {},
+    customTrackVerticalStyle: {},
     tagName: 'div',
-    defaultScrollbarWidth: 0,
+    defaultScrollbarWidth: 17,
+    defaultTrackWidth: 7,
     thumbMinSize: 30,
     hideTracksWhenNotNeeded: false,
     autoHide: false,

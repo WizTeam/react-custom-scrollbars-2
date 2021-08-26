@@ -1,3 +1,9 @@
+let defaultTrackWidth = 7;
+
+export function setDefaultTrackWidth(width) {
+    defaultTrackWidth = width;
+}
+
 export const containerStyleDefault = {
     position: 'relative',
     overflow: 'hidden',
@@ -37,12 +43,12 @@ export const viewStyleUniversalInitial = {
 
 export const trackHorizontalStyleDefault = {
     position: 'absolute',
-    height: 6
+    height: defaultTrackWidth
 };
 
 export const trackVerticalStyleDefault = {
     position: 'absolute',
-    width: 6
+    width: defaultTrackWidth
 };
 
 export const thumbHorizontalStyleDefault = {
