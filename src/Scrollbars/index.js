@@ -56,6 +56,7 @@ export default class Scrollbars extends Component {
         this.scrollToRight = this.scrollToRight.bind(this);
         this.scrollToBottom = this.scrollToBottom.bind(this);
 
+        this.handleContainerScroll = this.handleContainerScroll.bind(this);
         this.handleTrackMouseEnter = this.handleTrackMouseEnter.bind(this);
         this.handleTrackMouseLeave = this.handleTrackMouseLeave.bind(this);
         this.handleHorizontalTrackMouseDown = this.handleHorizontalTrackMouseDown.bind(this);
@@ -214,9 +215,10 @@ export default class Scrollbars extends Component {
     addListeners() {
         /* istanbul ignore if */
         if (typeof document === 'undefined' || !this.view) return;
-        const { view, trackHorizontal, trackVertical, thumbHorizontal, thumbVertical } = this;
+        const { view, container, trackHorizontal, trackVertical, thumbHorizontal, thumbVertical } = this;
         view.addEventListener('scroll', this.handleScroll);
         if (!getScrollbarWidth()) return;
+        container.addEventListener('scroll', this.handleContainerScroll);
         trackHorizontal.addEventListener('mouseenter', this.handleTrackMouseEnter);
         trackHorizontal.addEventListener('mouseleave', this.handleTrackMouseLeave);
         trackHorizontal.addEventListener('mousedown', this.handleHorizontalTrackMouseDown);
@@ -231,9 +233,10 @@ export default class Scrollbars extends Component {
     removeListeners() {
         /* istanbul ignore if */
         if (typeof document === 'undefined' || !this.view) return;
-        const { view, trackHorizontal, trackVertical, thumbHorizontal, thumbVertical } = this;
+        const { view, container, trackHorizontal, trackVertical, thumbHorizontal, thumbVertical } = this;
         view.removeEventListener('scroll', this.handleScroll);
         if (!getScrollbarWidth()) return;
+        container.addEventListener('scroll', this.handleContainerScroll);
         trackHorizontal.removeEventListener('mouseenter', this.handleTrackMouseEnter);
         trackHorizontal.removeEventListener('mouseleave', this.handleTrackMouseLeave);
         trackHorizontal.removeEventListener('mousedown', this.handleHorizontalTrackMouseDown);
@@ -375,6 +378,11 @@ export default class Scrollbars extends Component {
         const { autoHide } = this.props;
         if (!autoHide) return;
         this.hideTracks();
+    }
+
+    handleContainerScroll() {
+        this.container.scrollTop = 0;
+        this.container.scrollLeft = 0;
     }
 
     handleTrackMouseEnter() {
