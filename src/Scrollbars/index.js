@@ -236,7 +236,7 @@ export default class Scrollbars extends Component {
         const { view, container, trackHorizontal, trackVertical, thumbHorizontal, thumbVertical } = this;
         view.removeEventListener('scroll', this.handleScroll);
         if (!getScrollbarWidth()) return;
-        container.addEventListener('scroll', this.handleContainerScroll);
+        container.removeEventListener('scroll', this.handleContainerScroll);
         trackHorizontal.removeEventListener('mouseenter', this.handleTrackMouseEnter);
         trackHorizontal.removeEventListener('mouseleave', this.handleTrackMouseLeave);
         trackHorizontal.removeEventListener('mousedown', this.handleHorizontalTrackMouseDown);
