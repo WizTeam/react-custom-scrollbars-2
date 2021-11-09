@@ -57,6 +57,7 @@ export interface ScrollbarProps extends React.HTMLProps<Scrollbars> {
 export class Scrollbars extends React.Component<ScrollbarProps> {
     scrollTop(top: number): void;
     scrollLeft(left: number): void;
+    scrollToElement(elem: Element, topPercent?: Number): void;
     scrollToTop(): void;
     scrollToBottom(): void;
     scrollToLeft(): void;

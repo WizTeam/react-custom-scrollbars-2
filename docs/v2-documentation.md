@@ -89,6 +89,7 @@ class CustomScrollbars extends Component {
 
 * `scrollTop(top)`: scroll to the top value
 * `scrollLeft(left)`: scroll to the left value
+* `scrollToElement(elem: Element, topPercent: Number)`: scroll to element
 * `scrollToTop()`: scroll to top
 * `scrollToBottom()`: scroll to bottom
 * `scrollToLeft()`: scroll to left

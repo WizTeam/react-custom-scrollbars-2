@@ -51,6 +51,7 @@ export default class Scrollbars extends Component {
 
         this.scrollLeft = this.scrollLeft.bind(this);
         this.scrollTop = this.scrollTop.bind(this);
+        this.scrollToElement = this.scrollToElement.bind(this);
         this.scrollToLeft = this.scrollToLeft.bind(this);
         this.scrollToTop = this.scrollToTop.bind(this);
         this.scrollToRight = this.scrollToRight.bind(this);
@@ -195,6 +196,17 @@ export default class Scrollbars extends Component {
     scrollToLeft() {
         if (!this.view) return;
         this.view.scrollLeft = 0;
+    }
+
+    scrollToElement(elem, topPercent = 0.1) {
+        if (!this.view) return;
+        if (!elem.closest('body')) {
+            return;
+        }
+        const elemRect = elem.getBoundingClientRect();
+        const viewRect = this.view.getBoundingClientRect();
+        const targetTop = viewRect.top + viewRect.height * topPercent;
+        this.view.scrollTop += elemRect.top - targetTop;
     }
 
     scrollToTop() {
